@@ -1,0 +1,475 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Form</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <style>#}
+{#    body {#}
+{#      background: #f8f9fa;#}
+{#    }#}
+{#    .form-container {#}
+{#      max-width: 650px;#}
+{#      margin: 50px auto;#}
+{#      background: #fff;#}
+{#      padding: 30px;#}
+{#      border-radius: 15px;#}
+{#      box-shadow: 0 4px 15px rgba(0,0,0,0.1);#}
+{#    }#}
+{#    h2 {#}
+{#      text-align: center;#}
+{#      font-weight: 600;#}
+{#      margin-bottom: 25px;#}
+{#      color: #0d6efd;#}
+{#    }#}
+{#    label {#}
+{#      font-weight: 500;#}
+{#      margin-bottom: 5px;#}
+{#    }#}
+{#    .btn-primary {#}
+{#      width: 100%;#}
+{#      padding: 10px;#}
+{#      border-radius: 8px;#}
+{#      font-size: 16px;#}
+{#      font-weight: 500;#}
+{#    }#}
+{#    .form-control {#}
+{#      border-radius: 8px;#}
+{#      padding: 10px;#}
+{#    }#}
+{#    .form-check-label {#}
+{#      font-weight: 400;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container">#}
+{#    <div class="form-container">#}
+{#      <h2>EventOrganaizer Signup Form</h2>#}
+{#        {% for message in messages %}#}
+{#        <div class="message">{{ message }}</div>#}
+{#    {% endfor %}#}
+{#      <form action="/myapp/Organaizer_signup/" method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="name" class="col-sm-4 col-form-label">Name</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="text" class="form-control" name="name" id="name" required>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="email" class="col-sm-4 col-form-label">Email</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="email" placeholder="Enter your email" class="form-control" id="email" name="email" required#}
+{#              oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="this.setCustomValidity('')">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="phone" class="col-sm-4 col-form-label">Phone</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="tel" pattern="[0-9]{10}" name="phone" class="form-control" id="phone" required#}
+{#              oninvalid="this.setCustomValidity('Please enter a 10-digit phone number')" oninput="this.setCustomValidity('')">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="place" class="col-sm-4 col-form-label">Place</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="text" name="place" class="form-control" id="place" required>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label class="col-sm-4 col-form-label">Gender</label>#}
+{#          <div class="col-sm-8 d-flex align-items-center gap-3">#}
+{#            <div class="form-check">#}
+{#              <input class="form-check-input" type="radio" name="gender" id="male" required>#}
+{#              <label class="form-check-label" for="male">Male</label>#}
+{#            </div>#}
+{#            <div class="form-check">#}
+{#              <input class="form-check-input" type="radio" name="gender" id="female" required>#}
+{#              <label class="form-check-label" for="female">Female</label>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="city" class="col-sm-4 col-form-label">City</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="text" name="city" class="form-control" id="city" required>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="pincode" class="col-sm-4 col-form-label">Pincode</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="text" pattern="[0-9]{6}" name="pincode" class="form-control" id="pincode" required#}
+{#              oninvalid="this.setCustomValidity('Please enter a 6-digit pincode')" oninput="this.setCustomValidity('')">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="state" class="col-sm-4 col-form-label">State</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="text" name="state" class="form-control" id="state" required>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="photo" class="col-sm-4 col-form-label">Upload Photo</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="file" class="form-control" id="photo" name="photo" required>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <label for="password" class="col-sm-4 col-form-label">Password</label>#}
+{#          <div class="col-sm-8">#}
+{#            <input type="password" class="form-control" name="password" id="password" minlength="6" required#}
+{#              oninvalid="this.setCustomValidity('Password must be at least 6 characters')" oninput="this.setCustomValidity('')">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="row mb-3">#}
+{#          <div class="col-sm-12">#}
+{#            <button type="submit" class="btn btn-primary">Register</button>#}
+{#          </div>#}
+{#        </div>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Form</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{##}
+{#</head>#}
+{#<body>#}
+{#  <div class="container">#}
+{#    <h2 class="mb-4"> EventOrganaizer Signup  Form</h2>#}
+{#    <form action="/myapp/Organaizer_signup/" method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Name</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" name="name" id="name" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="dob" class="col-sm-4 ">Email</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input#}
+{#            type="email"#}
+{#            placeholder="Enter your email"#}
+{#            class="form-control"#}
+{#            id="email"#}
+{#            name="email"#}
+{#            required#}
+{#            oninvalid="this.setCustomValidity('Please enter a valid email address')"#}
+{#            oninput="this.setCustomValidity('')"#}
+{#          >#}
+{#        </div>#}
+{#      </div>#}
+{#        <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">phone</label>#}
+{#        <div class="col-sm-8">#}
+{#        <input#}
+{#                    type="tel"#}
+{#                    pattern="[0-9]{10}"#}
+{#                    name="phone"#}
+{#                    class="form-control"#}
+{#                    id="phone"#}
+{#                    required#}
+{#                    oninvalid="this.setCustomValidity('Please enter a 10-digit phone number')"#}
+{#                    oninput="this.setCustomValidity('')"#}
+{#                  >        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">Place</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" name="place" class="form-control" id="place" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#         <div class="row mb-3">#}
+{#        <label class="col-sm-4 ">Gender</label>#}
+{#        <div class="col-sm-8">#}
+{#          <div class="form-check form-check-inline">#}
+{#            <input class="form-check-input" type="radio" name="gender" id="male" required>#}
+{#            <label class="form-check-label" for="male">Male</label>#}
+{#          </div>#}
+{#          <div class="form-check form-check-inline">#}
+{#            <input class="form-check-input" type="radio" name="gender" id="female" required>#}
+{#            <label class="form-check-label" for="female">Female</label>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">City</label>#}
+{#        <div class="col-sm-8">#}
+{#           <input type="text" name="city" class="form-control" id="city" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="place" class="col-sm-4 ">Pincode</label>#}
+{#        <div class="col-sm-8">#}
+{#            <input#}
+{#            type="text"#}
+{#            pattern="[0-9]{6}"#}
+{#            name="pincode"#}
+{#            class="form-control"#}
+{#            id="pincode"#}
+{#            required#}
+{#            oninvalid="this.setCustomValidity('Please enter a 6-digit pincode')"#}
+{#            oninput="this.setCustomValidity('')"#}
+{#          >#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">State</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" name="state" class="form-control" id="state" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="photo" class="col-sm-4 ">Upload Photo</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="photo" name="photo" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="password" class="col-sm-4 ">Password</label>#}
+{#        <div class="col-sm-8">#}
+{#        <input#}
+{#                    type="password"#}
+{#                    class="form-control"#}
+{#                    name="password"#}
+{#                    id="password"#}
+{#                    minlength="6"#}
+{#                    required#}
+{#                    oninvalid="this.setCustomValidity('Password must be at least 6 characters')"#}
+{#                    oninput="this.setCustomValidity('')">        </div>#}
+{#      </div>#}
+{##}
+{##}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{#          <button type="submit" class="btn btn-primary">Register</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-container {
+      max-width: 650px;
+      width: 100%;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: #0d6efd;
+    }
+    label {
+      font-weight: 500;
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .form-control {
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 2px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>EventOrganaizer Signup Form</h2>
+    {% for message in messages %}
+      <div class="message">{{ message }}</div>
+    {% endfor %}
+
+    <form id="signupForm" action="/myapp/Organaizer_signup/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name" required>
+        <div class="error" id="nameError">Name is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" placeholder="Enter your email" class="form-control" id="email" name="email" required>
+        <div class="error" id="emailError">Please enter a valid email</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="phone">Phone</label>
+        <input type="tel" pattern="[0-9]{10}" name="phone" class="form-control" id="phone" required>
+        <div class="error" id="phoneError">Enter 10-digit phone number</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="place">Place</label>
+        <input type="text" name="place" class="form-control" id="place" required>
+        <div class="error" id="placeError">Place is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label>Gender</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="error" id="genderError">Please select gender</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="city">City</label>
+        <input type="text" name="city" class="form-control" id="city" required>
+        <div class="error" id="cityError">City is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="pincode">Pincode</label>
+        <input type="text" pattern="[0-9]{6}" name="pincode" class="form-control" id="pincode" required>
+        <div class="error" id="pincodeError">Enter 6-digit pincode</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="state">State</label>
+        <input type="text" name="state" class="form-control" id="state" required>
+        <div class="error" id="stateError">State is required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="photo">Upload Photo</label>
+        <input type="file" class="form-control" id="photo" name="photo" required>
+        <div class="error" id="photoError">Photo is required</div>
+      </div>
+
+      <div class="mb-3 password-wrapper">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" minlength="6" required>
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        <div class="error" id="passwordError">Password must be at least 6 characters</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+
+  <script>
+    // Password toggle
+    function togglePassword() {
+      const pass = document.getElementById("password");
+      pass.type = pass.type === "password" ? "text" : "password";
+    }
+
+    // Validation
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      let valid = true;
+
+      function showError(id, condition) {
+        const el = document.getElementById(id);
+        if (condition) {
+          el.style.display = "block";
+          valid = false;
+        } else {
+          el.style.display = "none";
+        }
+      }
+
+      showError("nameError", document.getElementById("name").value.trim() === "");
+      showError("emailError", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("email").value));
+      showError("phoneError", !/^\d{10}$/.test(document.getElementById("phone").value));
+      showError("placeError", document.getElementById("place").value.trim() === "");
+      showError("genderError", !document.querySelector('input[name="gender"]:checked'));
+      showError("cityError", document.getElementById("city").value.trim() === "");
+      showError("pincodeError", !/^\d{6}$/.test(document.getElementById("pincode").value));
+      showError("stateError", document.getElementById("state").value.trim() === "");
+      showError("photoError", document.getElementById("photo").files.length === 0);
+      showError("passwordError", document.getElementById("password").value.length < 6);
+
+      if (!valid) {
+        event.preventDefault(); // stop form submit
+      }
+    });
+  </script>
+</body>
+</html>

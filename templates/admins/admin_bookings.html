@@ -1,0 +1,61 @@
+{% extends 'admins/index.html' %}
+{% block body %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Booked Events</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">All Booked Events</h2>
+
+    <!-- Date range filter -->
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label for="minDate">From Date:</label>
+        <input type="date" id="minDate" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="maxDate">To Date:</label>
+        <input type="date" id="maxDate" class="form-control">
+      </div>
+    </div>
+
+    <table id="reviewsTable" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Student Email</th>
+          <th>Student Phone</th>
+          <th>Event Name</th>
+          <th>Organizer Name</th>
+          <th>Organizer Email</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.STUDENT.name }}</td>
+          <td>{{ i.STUDENT.email }}</td>
+          <td>{{ i.STUDENT.phone }}</td>
+          <td>{{ i.EVENT.name }}</td>
+          <td>{{ i.EVENT.EVENTORGANAIZER.name }}</td>
+          <td>{{ i.EVENT.EVENTORGANAIZER.email }}</td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+</body>
+</html>
+{% endblock %}

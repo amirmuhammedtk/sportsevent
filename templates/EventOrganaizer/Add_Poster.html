@@ -1,0 +1,66 @@
+{#{% extends 'EventOrganaizer/organaizerindex.html' %}#}
+{#{% block body %}#}
+{##}
+{##}
+{#<html>#}
+{#<head>#}
+{#    <title>sbvhj</title>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container mt-4">#}
+{#    <h2 class="mb-4">Add Poster</h2>#}
+{#    <form action="/myapp/add_event_category_post/" method="post" enctype="multipart/form-data">#}
+{#      {% csrf_token %}#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="poster" class="col-sm-4 col-form-label">Photo</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="poster" name="poster" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="description" class="col-sm-4 col-form-label">Description</label>#}
+{#        <div class="col-sm-8">#}
+{#          <textarea  class="form-control" id="description" name="description" required/>#}
+{#        </div>#}
+{#      </div>#}
+{#    <button>Submit</button>#}
+{#    #}
+{#    </form>#}
+{#  </div>#}
+{#  </body>#}
+{#</html>#}
+{##}
+{##}
+{#{% endblock %}#}
+
+
+{% extends 'EventOrganaizer/organaizerindex.html' %}
+{% block body %}
+
+<div class="container mt-4">
+  <h2 class="mb-4">Add Poster</h2>
+  <form action="/myapp/event_add_poster_post/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="row mb-3">
+      <label for="poster" class="col-sm-4 col-form-label">Photo</label>
+      <div class="col-sm-8">
+        <input type="file" class="form-control" id="poster" name="poster" required>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="description" class="col-sm-4 col-form-label">Description</label>
+      <div class="col-sm-8">
+        <textarea class="form-control" id="description" name="description" required></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>
+
+{% endblock %}

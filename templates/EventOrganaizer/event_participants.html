@@ -1,0 +1,101 @@
+{% extends 'EventOrganaizer/organaizerindex.html' %}
+{% block body %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Schedule</title>
+
+  <!-- Bootstrap + DataTables -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+  <style>
+    .container {
+      margin-top: 40px;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      background-color: #007bff !important;
+      color: white !important;
+      text-align: center;
+      vertical-align: middle;
+    }
+    td, th {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #e9f2ff;
+    }
+    .message {
+      background-color: #d9edf7;
+      color: #31708f;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2><h2>Participants for {{ event.name }}</h2>
+</h2>
+
+    {% for message in messages %}
+      <div class="message">{{ message }}</div>
+    {% endfor %}
+
+    <table id="scheduleTable" class="table table-striped table-bordered">
+      <thead>
+
+    <tr>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Winner</th>
+    </tr>
+
+    {% for i in data %}
+    <tr>
+        <td>{{ i.STUDENT.name }}</td>
+        <td>{{ i.status }}</td>
+        <td>{{ i.date }}</td>
+        <td><a href="/myapp/SetAsWinner/{{ i.id }}">Winnner</a> </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No participants registered yet.</td></tr>
+    {% endfor %}
+</tbody>
+    </table>
+  </div>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#scheduleTable').DataTable({
+        "pageLength": 5,
+        "lengthMenu": [5, 10, 20, 50],
+        "order": [[3, "desc"]] // Sort by Date descending
+      });
+    });
+  </script>
+</body>
+</html>
+{% endblock %}

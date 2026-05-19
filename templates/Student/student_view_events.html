@@ -1,0 +1,91 @@
+{% extends 'Student/studentindex.html' %}
+{% block body %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Approved Events</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+    .img-thumbnail {
+      width: 60px;
+      height: 60px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container mt-5 text-light">
+    <h2 class="mb-4">Approved Events</h2>
+{% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+    <!-- 🔹 Date Filters -->
+    <div class="row filter-container">
+      <div class="col-md-3">
+        <label for="minDate">From Date:</label>
+        <input type="date" id="minDate" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="maxDate">To Date:</label>
+        <input type="date" id="maxDate" class="form-control">
+      </div>
+    </div>
+
+    <table id="reviewsTable" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Event Type</th>
+          <th>Shedule</th>
+          <th>Photo</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in events %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.description }}</td>
+          <td>{{ e.eventtype }}</td>
+          <td>{{ e.shedule }}</td>
+          <td>
+            {% if e.photo %}
+              <img src="{{ e.photo }}" class="img-thumbnail" alt="Event Photo">
+            {% else %}
+              <img src="https://via.placeholder.com/60" class="img-thumbnail" alt="No Photo">
+            {% endif %}
+          </td>
+          <td>{{ e.date }}</td>
+          <td>{{ e.location }}</td>
+          <td>
+            {% if not e.booked %}
+              <a href="/myapp/book_event/{{ e.id }}" class="btn btn-sm btn-success">Register</a>
+            {% else %}
+              <span class="badge bg-secondary">Registered</span>
+            {% endif %}
+          </td>
+        </tr>
+            {% empty %}
+  <tr>
+    <td colspan="9" class="text-center">No events found</td>
+  </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+</body>
+</html>
+{% endblock %}
+
+
+
+
