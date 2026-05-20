@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2#p(d#7et)l7ah(8g-103)e=qj2908d8terim0oaapn-a^j7yc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'eventManagment.urls'
@@ -76,13 +78,17 @@ WSGI_APPLICATION = 'eventManagment.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sportsapp',
-        'USER':'root',
-        'PASSWORD':'2002',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sportevent',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'YOUR_PASSWORD_HERE',
+        'HOST': 'ep-snowy-fog-aqicqnkd-pooler.c-8.us-east-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -121,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
